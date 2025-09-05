@@ -6,16 +6,13 @@ import {
   Resolver,
   ResolveReference,
 } from '@nestjs/graphql';
-
-import { PurchasesService } from '../../../services/purchases.service';
-
 import { AuthorizationGuard } from 'src/http/authorization/authorization.guard';
-import { CustomersService } from 'src/services/customer.service';
-
 import {
   type AuthUser,
   CurrentUser,
 } from 'src/http/authorization/current-user';
+import { CustomersService } from 'src/services/customer.service';
+import { PurchasesService } from '../../../services/purchases.service';
 import { Customer } from '../models/customer';
 
 @Resolver(() => Customer)

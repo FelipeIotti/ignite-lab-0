@@ -1,8 +1,10 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import path from 'node:path';
 import { DatabaseModule } from 'src/database/database.module';
 import { CoursesService } from 'src/services/course.service';
 import { EnrollmentsService } from 'src/services/enrollments.service';
@@ -15,9 +17,9 @@ import { StudentsResolver } from './graphql/resolvers/students.resolver';
   imports: [
     ConfigModule.forRoot(),
     DatabaseModule,
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      autoSchemaFile: path.resolve(process.cwd(), 'src/schema.gql'),
-      driver: ApolloDriver,
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      autoSchemaFile: true,
+      driver: ApolloFederationDriver,
     }),
   ],
   providers: [
